@@ -39,7 +39,7 @@
     "react/prop-types": 2,
     "react/require-default-props": [2, { "forbidDefaultForRequired": true }],
     "jsx-a11y/no-static-element-interactions": 0,
-    "keyword-spacing": [2, { "before": true }],
+    // "keyword-spacing": [2, { "before": true }],
     "eqeqeq": [2, "always"],
     "space-infix-ops": [0, {"int32Hint": false}],
     "spaced-comment": 0,

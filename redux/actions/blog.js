@@ -7,6 +7,7 @@ import {
 export function fetchItemData (payload) {
   return {
     type: FETCH_ITEM,
+    isRequest: true,
     payload
   };
 }
@@ -14,6 +15,7 @@ export function fetchItemData (payload) {
 export function fetchItemDataSuccess (payload) {
   return {
     type: FETCH_ITEM_SUCCESS,
+    isRequest: false,
     payload
   };
 }

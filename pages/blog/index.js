@@ -2,7 +2,7 @@ import BlogItem from './../../containers/blog/item';
 import { fetchItemData } from '../../redux/actions/blog';
 
 BlogItem.getInitialProps = async (props) => {
-    const { store, isServer, result } = props.ctx;
+    const { store, isServer, resultData } = props.ctx;
     let data = {
         id: 1
     };
@@ -11,9 +11,9 @@ BlogItem.getInitialProps = async (props) => {
     
     store.dispatch(fetchItemData(data));
     console.log("&&&&&&&&&&&&&&&&&&&&&&&&");
-    console.log(result);
+    console.log(resultData);
     
-    return { isServer, result };
+    return { isServer, resultData };
 };
 
 

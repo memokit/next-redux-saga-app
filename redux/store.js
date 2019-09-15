@@ -3,10 +3,12 @@ import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './reducers';
 import rootSaga from './sagas';
+import tokenMiddleware from '../middlewares/client/token';
 import blogMiddleware from '../middlewares/client/blog';
 
 const bindMiddleware = middleware => {
   // add route middleware
+  middleware.push(tokenMiddleware);
   middleware.push(blogMiddleware);
 
   if (process.env.NODE_ENV !== 'production') {
