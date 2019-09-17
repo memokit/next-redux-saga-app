@@ -1,4 +1,7 @@
 // ================= Token Part ==================== //
+export const TOKEN = 'TOKEN';
+export const TOKEN_FAIL = 'TOKEN_FAIL';
+export const TOKEN_SUCCESS = 'TOKEN_SUCCESS';
 export const REFRESH_TOKEN = 'REFRESH_TOKEN';
 export const REFRESH_TOKEN_FAIL = 'REFRESH_TOKEN_FAIL';
 export const REFRESH_TOKEN_SUCCESS = 'FETCH_ITEM_SUCCESS';

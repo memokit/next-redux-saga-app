@@ -9,8 +9,10 @@ function Blog(props) {
   const [data, setData] = useState({ ...resultData });
 
   const updateData = () => {
-    if (_.isNil(data) || _.isNil(data.author)) {
+    if (_.isNil(data) || _.isNil(data.author)) {      
       setData(prevData => prevData);
+    } else {
+      setData(resultData);
     }
   };
 
@@ -25,7 +27,7 @@ function Blog(props) {
       </Head>
       <div>
         Hello My Blog =>
-        {data.author}
+        {resultData.author}
       </div>
     </>
   );

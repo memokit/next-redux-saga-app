@@ -42,6 +42,8 @@ HTTP_METHOD.forEach(method => {
     return fetch(url, opts)
       .then(res => res.json())
       .then(({ errcode = 0, errmsg, data }) => {
+
+        
         if (errcode !== 0) {
           const err = new Error(errmsg);
           err.message = errmsg;
