@@ -1,26 +1,33 @@
 // import fetch from 'isomorphic-unfetch';
+import fetch from 'isomorphic-fetch';
 import { take, put, fork } from 'redux-saga/effects';
 import {
   FETCH_ITEM,
 } from '../../../constants/ActionTypes';
 import { fetchItemDataFail, fetchItemDataSuccess } from '../../actions/blog';
 // import token from '../token/token';
-import fetch from '../../../core/fetchUtil';
+// import fetch from '../../../core/fetchUtil';
+// import fetch from '../../../core/nextFetch';
+import headerUtil from '../../../core/headerUtil';
 import api from '../../../constants/ApiUrl';
 /**
  * userItem saga
  */
-export function * blogItem() {
-  
+export function* blogItem() {
+
   while (true) {
-    const { payload } =  yield take(FETCH_ITEM);
-    
+    const { payload } = yield take(FETCH_ITEM);
+
     try {
+      console.log(payload.id);
+      const header = yield headerUtil();
       // yield token();
-      const res = yield fetch(api.getItem+"/"+payload.id);
+      // const res = yield fetch(api.getItem + "/" + payload.id, {
+      const res = yield fetch(api.getItem, header);
       // const res = yield nextFetch(api.getItem+"/"+payload.id);
       // const data = yield res;
       const data = yield res.json();
+      console.log(data);
       yield put(fetchItemDataSuccess(data));
     } catch (error) {
       yield put(fetchItemDataFail(error));

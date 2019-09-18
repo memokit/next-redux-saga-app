@@ -13,9 +13,12 @@ const dev = isDev;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+
+
 app.prepare()
   .then(() => {
     const server = express();
+
     // deal /favicon.ico
     server.get('/favicon.ico', (req, res) =>
       res.sendFile(path.join(__dirname, 'static', 'favicon.ico'))
