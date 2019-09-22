@@ -9,9 +9,7 @@ import Blog from '../../components/Blog';
 
 
 const mapStateToProps = (state) => {
-  console.log("***********Container**************");
-  console.log(state);
-  
+
   return { resultData: state.blog.item.resultData };
 };
 

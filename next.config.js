@@ -115,8 +115,9 @@ module.exports = withLess({
   publicRuntimeConfig: { // Will be available on both server and client
     staticFolder: '/static',
     isDev, // Pass through env variables
+    host: 'https://memokit.me'
   },
   env: {
-    SERVER_HOST: 'http://www.luffyzhou.cn'
+    SERVER_HOST: 'https://memokit.me'
   }
 });

@@ -14,22 +14,49 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 
+const devProxy = {
+  '/api/content': {
+    target: 'http://localhost:3001',
+    // pathRewrite: { '^/api': '/' },
+    changeOrigin: true
+  }
+}
 
 app.prepare()
   .then(() => {
     const server = express();
+    console.log(devProxy);
+    
+    if (dev && devProxy) {
+      console.log("++++++ XHR +++++++");
+      const proxyMiddleware = require('http-proxy-middleware')
+      Object.keys(devProxy).forEach(function (context) {
+        console.log(context);
+        
+        server.use(proxyMiddleware(context, devProxy[context]))
+      })
+      console.log("++++++ End XHR +++++++");
+    }
+
+    server.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      next();
+    });
 
     // deal /favicon.ico
     server.get('/favicon.ico', (req, res) =>
       res.sendFile(path.join(__dirname, 'static', 'favicon.ico'))
     );
 
-    server.get('/user/detail/:username', (req, res) => {
-      const { username } = req.params;
-      return app.render(req, res, '/user/detail', { username });
-    });
+    // server.get('/user/detail/:username', (req, res) => {
+    //   const { username } = req.params;
+    //   return app.render(req, res, '/user/detail', { username });
+    // });
 
     server.get('*', (req, res) => {
+      //onst isXhr = req.xhr;
+      
+
       return handle(req, res);
     });
 
