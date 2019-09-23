@@ -28,8 +28,10 @@ export function* blogItem() {
       const header = yield headerUtil();
       // yield token();
       // const res = yield fetch(api.getItem + "/" + payload.id, {
-        console.log(hostPath(api.getItem));
+        console.log("------ P A T H ------");
         
+        console.log(hostPath(api.getItem));
+        console.log("------ End P A T H ------");
       const res = yield fetch(hostPath(api.getItem), header);
       // const res = yield nextFetch(api.getItem+"/"+payload.id);
       // const data = yield res;

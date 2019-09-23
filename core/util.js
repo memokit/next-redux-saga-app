@@ -1,5 +1,7 @@
 import getConfig from 'next/config';
-const { publicRuntimeConfig: { host, isDev } } = getConfig();
+import _ from 'lodash';
+import { DevProxy, ProdProxy } from '../constants/ProxyConfig';
+const { publicRuntimeConfig: { isDev } } = getConfig();
 
 // transform the http query & params
 export const filterObject = (o, filter) => {
@@ -14,19 +16,21 @@ export const filterObject = (o, filter) => {
 
 export const hostPath = (url) => {
   const isServer = typeof window === 'undefined';
-  console.log("======== isServer ==========");
-      console.log(isServer);
-      console.log(host);
-      
-      console.log("======== End isServer ==========");
-  const hostPath = isDev? 'http://localhost' : host;
+  const hostPath = isDev ? DevProxy.host : ProdProxy.host;
   let port = "";
-  if(isServer){
-    if(url.search("/api/content") >= 0){
-      port = isDev? ":3001": "";
-      return `${hostPath}${port}${url}`;
+  if (isServer) {
+
+    let data;
+    if(isDev){
+      data = _.find(DevProxy.systems, function (o) { return url.search(o.pathUrl) >= 0; });
+    } else {
+      data = _.find(ProdProxy.systems, function (o) { return url.search(o.pathUrl) >= 0; });
     }
-  } else {
-    return url;
+
+    port = isDev ? `:${data.port}` : "";
+    return `${hostPath}${port}${url}`;
+
   }
+
+  return url;
 };

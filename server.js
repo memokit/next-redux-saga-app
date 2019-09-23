@@ -3,6 +3,7 @@ const cp = require('child_process');
 const path = require('path');
 const next = require('next');
 const { publicRuntimeConfig, serverRuntimeConfig } = require('./next.config');
+// const { DevProxy } = require('./constants/ProxyConfig');
 
 const { isDev } = publicRuntimeConfig;
 const { PORT } = serverRuntimeConfig;
@@ -19,7 +20,11 @@ const devProxy = {
     target: 'http://localhost:3001',
     // pathRewrite: { '^/api': '/' },
     changeOrigin: true
-  }
+  },
+  '/api/auth/refresh-token': {
+    target: `https://api.memokit.me:3002`,
+    changeOrigin: true
+  },
 }
 
 app.prepare()
