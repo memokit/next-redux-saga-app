@@ -11,7 +11,6 @@ const headerUtil = async () => {
             console.log("!!!!!!!!!!!!!!!!!!!!! End refreshToken !!!!!!!!!!!!!!!!!!!!!");
             return  {
                 method: "GET",
-                mode: 'cors',
                 headers: {
                     "Accept": "application/json",
                     'Content-Type': 'application/json',
