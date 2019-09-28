@@ -1,11 +1,11 @@
 /* eslint-disable */
-const withLess = require('@zeit/next-less');
+// const withLess = require('@zeit/next-less');
 const lessToJS = require('less-vars-to-js');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserPlugin = require('terser-webpack-plugin');
 const fs = require('fs');
 const path = require('path');
-
+const withAntd = require('./next-antd.config');
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
   fs.readFileSync(
@@ -43,7 +43,8 @@ const srcFolder = [
   path.resolve('redux')
 ]
 
-module.exports = withLess({
+module.exports = 
+withAntd({
   lessLoaderOptions: {
     javascriptEnabled: true,
     modifyVars: themeVariables,

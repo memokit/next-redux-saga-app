@@ -27,7 +27,7 @@ function Blog(props) {
       </Head>
       <div>
         Hello My Blog =>
-        {resultData.author}
+        {resultData.result.title}
       </div>
     </>
   );

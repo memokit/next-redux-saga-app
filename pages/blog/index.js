@@ -7,12 +7,7 @@ BlogItem.getInitialProps = async (props) => {
         id: 1
     };
 
-    console.log("Page getInitialProps");
-    
     store.dispatch(fetchItemData(data));
-    console.log("&&&&&&&&&&&&&&&&&&&&&&&&");
-    console.log(resultData);
-    
     return { isServer, resultData };
 };
 

@@ -18,6 +18,7 @@ export const hostPath = (url) => {
   const isServer = typeof window === 'undefined';
   const hostPath = isDev ? DevProxy.host : ProdProxy.host;
   let port = "";
+  
   if (isServer) {
 
     let data;
@@ -27,8 +28,12 @@ export const hostPath = (url) => {
       data = _.find(ProdProxy.systems, function (o) { return url.search(o.pathUrl) >= 0; });
     }
 
-    port = isDev ? `:${data.port}` : "";
-    return `${hostPath}${port}${url}`;
+    port = isDev ? _.isNil(data.port)? "" :`:${data.port}` : "";
+
+    const fullUrl = `${hostPath}${port}${url}`;
+
+    console.log(fullUrl);
+    return fullUrl;
 
   }
 

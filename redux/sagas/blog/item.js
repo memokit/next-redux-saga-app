@@ -11,7 +11,7 @@ import { fetchItemDataFail, fetchItemDataSuccess } from '../../actions/blog';
 import headerUtil from '../../../core/headerUtil';
 import { hostPath } from '../../../core/util';
 import api from '../../../constants/ApiUrl';
-
+const isServer = typeof window === 'undefined';
 /**
  * userItem saga
  */
@@ -39,7 +39,10 @@ export function* blogItem() {
       console.log(data);
       yield put(fetchItemDataSuccess(data));
     } catch (error) {
-      yield put(fetchItemDataFail(error));
+      if(!isServer){
+        yield put(fetchItemDataFail(error));
+      }
+      
     }
   }
 }
