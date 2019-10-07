@@ -8,7 +8,6 @@ const { publicRuntimeConfig, serverRuntimeConfig } = require('./next.config');
 const { isDev } = publicRuntimeConfig;
 const { PORT } = serverRuntimeConfig;
 
-// 判断开发环境和生产环境
 const dev = isDev;
 
 const app = next({ dev });
@@ -17,12 +16,14 @@ const handle = app.getRequestHandler();
 
 const devProxy = {
   '/api/content': {
-    target: 'http://localhost:3001',
+    // target: 'http://localhost:3001',
+    target: 'https://api.memokit.me',
     // pathRewrite: { '^/api': '/' },
     changeOrigin: true
   },
   '/api/auth/refresh-token': {
-    target: `https://api.memokit.me:3002`,
+    // target: `https://api.memokit.me:3002`,
+    target: 'https://api.memokit.me',
     changeOrigin: true
   },
 }
