@@ -61,8 +61,6 @@ app.prepare()
 
     server.get('*', (req, res) => {
       //onst isXhr = req.xhr;
-      
-
       return handle(req, res);
     });
 
