@@ -26,6 +26,11 @@ const devProxy = {
     target: 'https://api.memokit.me',
     changeOrigin: true
   },
+  '/api/auth/access-token': {
+    // target: `https://api.memokit.me:3002`,
+    target: 'https://api.memokit.me',
+    changeOrigin: true
+  },
 }
 
 app.prepare()

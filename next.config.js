@@ -9,7 +9,7 @@ const withAntd = require('./next-antd.config');
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
   fs.readFileSync(
-    path.resolve(__dirname, './assets/antd-custom.less'),
+    path.resolve(__dirname, './src/assets/antd-custom.less'),
     'utf8',
   )
 );
@@ -19,11 +19,11 @@ const isDev = process.env.NODE_ENV !== 'production';
 // fix antd bug in dev development
 const devAntd = '@import "~antd/dist/antd.less";\n';
 const stylesData = fs.readFileSync(
-  path.resolve(__dirname, './assets/_styles.less'),
+  path.resolve(__dirname, './src/assets/_styles.less'),
   'utf-8'
 );
 fs.writeFileSync(
-  path.resolve(__dirname, './assets/self-styles.less'),
+  path.resolve(__dirname, './src/assets/self-styles.less'),
   isDev ? `${devAntd}${stylesData}` : stylesData,
   'utf-8'
 );
@@ -114,7 +114,7 @@ withAntd({
     PORT: isDev ? 3006 : (process.env.PORT || 5999)
   },
   publicRuntimeConfig: { // Will be available on both server and client
-    staticFolder: '/static',
+    staticFolder: '/public',
     isDev, // Pass through env variables
     host: 'https://memokit.me'
   },

@@ -4,9 +4,16 @@ import {
   FETCH_ITEM_SUCCESS
 } from '../../../constants/ActionTypes';
 
-const initialState = {
-  resultData: {author:''}
-};
+import { blogData } from './../../../initialData/blogData';
+
+const initialState = blogData;
+// const initialState = {
+//   resultData: {
+//     result: {
+//       title: ""
+//     }
+//   }
+// };
 
 const item = (state = initialState, { type, payload }) => {
   switch (type) {

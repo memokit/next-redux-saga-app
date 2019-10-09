@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
+import { blogData } from './../../initialData/blogData';
 import _ from 'lodash';
 
 function Blog(props) {
   const { resultData } = props;
+
+  console.log("-------------------");
+  
+  console.log(resultData);
+  console.log("-------------------");
 
   const [data, setData] = useState({ ...resultData });
 
@@ -35,7 +41,7 @@ function Blog(props) {
 
 
 Blog.defaultProps = {
-  resultData: null,
+  ...blogData
 };
 
 Blog.propTypes = {
