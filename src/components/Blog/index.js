@@ -1,51 +1,30 @@
-import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import PropTypes from 'prop-types';
-import { blogData } from './../../initialData/blogData';
-import _ from 'lodash';
+import { Provider } from 'mobx-react'
+import Layout from '../Layout';
 
 function Blog(props) {
-  const { resultData } = props;
+    return (
+        // <Provider store={store}>
+        //     <Layout title={props.title}>
+        //         <Head>
+        //             <title>My Blog</title>
+        //         </Head>
+        //         <div>
+        //             Hello My Blog =>
+        //         </div>
+        //     </Layout>
+        // </Provider>
 
-  console.log("-------------------");
-  
-  console.log(resultData);
-  console.log("-------------------");
-
-  const [data, setData] = useState({ ...resultData });
-
-  const updateData = () => {
-    if (_.isNil(data) || _.isNil(data.author)) {      
-      setData(prevData => prevData);
-    } else {
-      setData(resultData);
-    }
-  };
-
-  useEffect(() => {
-    updateData();
-  }, [resultData]);
-
-  return (
-    <>
-      <Head>
-        <title>My Blog</title>
-      </Head>
-      <div>
-        Hello My Blog =>
-        {resultData.result.title}
-      </div>
-    </>
-  );
+        <>
+            <Head>
+                <title>My Blog</title>
+            </Head>
+            <div>
+                Hello My Blog =>
+            </div>
+        </>
+    );
 }
 
-
-Blog.defaultProps = {
-  ...blogData
-};
-
-Blog.propTypes = {
-  resultData: PropTypes.object
-};
 
 export default Blog;
