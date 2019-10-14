@@ -1,13 +1,18 @@
-import App, { Container } from 'next/app';
-import { Provider } from 'mobx-react'
+import App from 'next/app';
+import { Provider } from 'mobx-react';
 import Layout from '../components/Layout';
 import initializeStore from '../store';
+import { initialToken } from '../utils/tokenUtil';
 
 class MyApp extends App {
   static async getInitialProps(appContext) {
-    const mobxStore = initializeStore();
+
+    const mobxStore = initializeStore(this.store);
     appContext.ctx.store = mobxStore;
     const appProps = await App.getInitialProps(appContext);
+
+    initialToken(appContext.ctx, mobxStore.tokenStore);
+    
     return {
       ...appProps,
       initialMobxState: mobxStore,
@@ -20,8 +25,8 @@ class MyApp extends App {
     this.store = isServer ? props.initialMobxState : initializeStore(props.initialMobxState);
   }
 
-  render () {
-    const { Component, pageProps, store, router } = this.props;
+  render() {
+    const { Component, pageProps, router } = this.props;
     return (
       <Provider store={this.store}>
         <Layout title={'Test'}>

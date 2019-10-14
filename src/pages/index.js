@@ -1,43 +1,24 @@
-import HomeListpage from '../components/HomeListpage'
-import DataStore from '../store/DataStore'
-import { getPageTitle, getInitList } from '../utils'
-
-// export default class HomePage extends HomeListpage {
-//   constructor (props) {
-//     super(props)
+import Home from '../components/Home';
+import { getPageTitle } from '../utils';
 
 
-//     console.log(props);
-
-//     this.store = initStore(props.initList)
-//   }
-// }
-
-
-HomeListpage.getInitialProps = async (props) => {
-  const { store, pathname } = props;
-  //store = initStore(props.initList)
-
-  // store = DataStore.initStore(mobxStore.dataStore)
-  
+Home.getInitialProps = async (props) => {
    
-  
+  const { store, pathname } = props;
 
-  const title = getPageTitle(pathname)
-  const path = title === '首页' ? 'all' : title
-  const apiUrl = `https://gank.io/api/data/${encodeURIComponent(path)}/20`
+  const title = getPageTitle(pathname);
+  const path = title === '首页' ? 'all' : title;
+  const apiUrl = `https://gank.io/api/data/${encodeURIComponent(path)}/20`;
 
-  const initList = await getInitList(apiUrl)
-  console.log("*********************************");
-  console.log(DataStore.initStore(initList));
-  console.log("*********************************");
-  // props.store.DataStore.list = props
+  const initList = [];//await getInitList(apiUrl);
+
+  store.dataStore.addList(initList);
   return {
     title,
     apiUrl,
     initList
-  }
+  };
 };
 
 
-export default HomeListpage;
+export default Home;

@@ -1,5 +1,5 @@
 const category = [{
-  title: '首页',
+  title: 'Home',
   path: '/'
 }, {
   title: '前端',
@@ -25,19 +25,31 @@ const category = [{
 }, {
   title: '福利',
   path: '/welfare'
-}]
+}];
+
+export const getResultData = async (res) => {
+
+  const json = await res.json();
+
+  console.log(res.status);
+  if(res.status === 200){
+    return json.result;
+  } 
+  
+  return {};
+};
 
 export const getInitList = async (apiUrl) => {
-  const res = await fetch(`${apiUrl}/1`)
-  const json = await res.json()
+  const res = await fetch(`${apiUrl}/1`);
+  const json = await res.json();
 
-  return json.results
-}
+  return json.results;
+};
 
 export const getPageTitle = (pathname) => {
-  return category.find(({ path }) => path === pathname).title
-}
+  return category.find(({ path }) => path === pathname).title;
+};
 
 export const getPagePath = (name) => {
-  return category.find(({ title }) => title === name).path
-}
+  return category.find(({ title }) => title === name).path;
+};

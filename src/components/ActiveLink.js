@@ -1,15 +1,15 @@
-import Router, { withRouter } from 'next/router'
+import Router, { withRouter } from 'next/router';
 
 const onClickHandler = href => event => {
-  event.preventDefault()
-  Router.push(href).then(() => window.scrollTo(0, 0))
-}
+  event.preventDefault();
+  Router.push(href).then(() => window.scrollTo(0, 0));
+};
 
 const ActiveLink = ({ children, router, href }) => {
-  const active = router.pathname === href
+  const active = router.pathname === href;
   const className = active
     ? 'ant-menu-item-selected ant-menu-item'
-    : 'ant-menu-item'
+    : 'ant-menu-item';
 
   return (
     <li
@@ -22,7 +22,7 @@ const ActiveLink = ({ children, router, href }) => {
     >
       {children}
     </li>
-  )
-}
+  );
+};
 
-export default withRouter(ActiveLink)
+export default withRouter(ActiveLink);

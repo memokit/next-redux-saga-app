@@ -1,20 +1,20 @@
-import Router from 'next/router'
-import NProgress from 'nprogress'
-import Head from 'next/head'
-import Link from 'next/link'
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import Head from 'next/head';
+import Link from 'next/link';
 import {
   Layout, Menu, Button, Icon, BackTop
-} from 'antd'
-import ActiveLink from './ActiveLink'
-import 'isomorphic-fetch'
+} from 'antd';
+import ActiveLink from './ActiveLink';
+import 'isomorphic-fetch';
 
 Router.onRouteChangeStart = () => {
-  NProgress.start()
-}
-Router.onRouteChangeComplete = () => NProgress.done()
-Router.onRouteChangeError = () => NProgress.done()
+  NProgress.start();
+};
+Router.onRouteChangeComplete = () => NProgress.done();
+Router.onRouteChangeError = () => NProgress.done();
 
-const { Header, Content, Footer } = Layout
+const { Header, Content, Footer } = Layout;
 
 const headerStyle = {
   position: 'fixed',
@@ -23,17 +23,17 @@ const headerStyle = {
   width: '100%',
   zIndex: 10,
   minWidth: 1140
-}
+};
 const headerMenuStyle = {
   lineHeight: '64px',
   float: 'left'
-}
+};
 const contentStyle = {
   width: 1140,
   padding: '80px 50px 64px',
   margin: '0 auto',
   minHeight: `calc(100vh - 69px)`
-}
+};
 
 export default ({ children, title = '主页' }) => (
   <div>
@@ -60,14 +60,6 @@ export default ({ children, title = '主页' }) => (
       >
         <ActiveLink href='/'>Home</ActiveLink>
         <ActiveLink href='/blog'>Blog</ActiveLink>
-        <ActiveLink href='/android'>Android</ActiveLink>
-        <ActiveLink href='/ios'>iOS</ActiveLink>
-        <ActiveLink href='/app'>App</ActiveLink>
-        <ActiveLink href='/expand'>拓展资源</ActiveLink>
-        <ActiveLink href='/videos'>休息视频</ActiveLink>
-        <ActiveLink href='/blind'>瞎推荐</ActiveLink>
-        <ActiveLink href='/welfare'>福利</ActiveLink>
-        <ActiveLink href='/timeline'>时间轴</ActiveLink>
       </Menu>
       <div className="icons">
         <Link href='/upload'>
@@ -111,4 +103,4 @@ export default ({ children, title = '主页' }) => (
       }
     `}</style>
   </div>
-)
+);
