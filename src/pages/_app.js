@@ -2,7 +2,9 @@ import App from 'next/app';
 import { Provider } from 'mobx-react';
 import Layout from '../components/Layout';
 import initializeStore from '../store';
-import { initialToken } from '../utils/tokenUtil';
+import cookies from 'nookies';
+import { getResultData } from '../utils';
+// import { initialToken } from '../utils/tokenUtil';
 
 class MyApp extends App {
   static async getInitialProps(appContext) {
@@ -11,19 +13,30 @@ class MyApp extends App {
     appContext.ctx.store = mobxStore;
     const appProps = await App.getInitialProps(appContext);
 
-    initialToken(appContext.ctx, mobxStore.tokenStore);
+    //initialToken(appContext.ctx, mobxStore.tokenStore);
+    const refreshTokenObj = await mobxStore.tokenStore.getRefreshToken();
+    const refreshTokenJson = await getResultData(refreshTokenObj);
+
+
+    setCookie(appContext.ctx);
+    
+    console.log(refreshTokenJson);
+    
+    
     
     return {
       ...appProps,
       initialMobxState: mobxStore,
     };
-  }
+  } 
 
   constructor(props) {
     super(props);
     const isServer = typeof window === 'undefined';
     this.store = isServer ? props.initialMobxState : initializeStore(props.initialMobxState);
   }
+
+  
 
   render() {
     const { Component, pageProps, router } = this.props;
@@ -36,5 +49,17 @@ class MyApp extends App {
     );
   }
 }
+
+const setCookie = (ctx) => {
+  cookies.set(ctx, 'x_rf_tk', "999999", {
+      // maxAge: refreshDiffDay * 24 * 60 * 60,
+      path: '/',
+  });
+
+  cookies.set(ctx, 'x_ac_tk', "888", {
+    // maxAge: refreshDiffDay * 24 * 60 * 60,
+    path: '/',
+  });
+};
 
 export default MyApp;
