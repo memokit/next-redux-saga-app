@@ -1,6 +1,6 @@
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
-
+const express = require('express');
 const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
@@ -12,6 +12,12 @@ const handle = app.getRequestHandler()
 mobxReact.useStaticRendering(true)
 
 app.prepare().then(() => {
+  // const server = express();
+  // server.use((req, res) => app.getRequestHandler()(req, res))
+  // server.all('*', (req, res) => {
+  //   return handle(req, res)
+  // })
+
   createServer((req, res) => {
     const parsedUrl = parse(req.url, true)
     const { pathname, query } = parsedUrl
@@ -30,7 +36,7 @@ app.prepare().then(() => {
       app.render(req, res, pathname.slice(2), query)
     } else if (!/Mobile/i.test(ua) && pathname.indexOf('/m') > -1) {
       app.render(req, res, '/', query)
-    } else {
+    }  else {
       handle(req, res, parsedUrl)
     }
   }).listen(port, err => {

@@ -1,3 +1,7 @@
+
+import { HostConfig} from '../constants/ProxyConfig';
+
+
 const category = [{
   title: 'Home',
   path: '/'
@@ -52,4 +56,11 @@ export const getPageTitle = (pathname) => {
 
 export const getPagePath = (name) => {
   return category.find(({ title }) => title === name).path;
+};
+
+export const getHostPath = (url) => {
+  const hostPath = HostConfig.host;
+  let port = HostConfig.port;
+
+  return `${hostPath}:${port}${url}`;
 };

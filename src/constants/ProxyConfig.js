@@ -1,3 +1,8 @@
+export const HostConfig = {
+    host: "http://localhost",
+    port: 3000
+};
+
 export const DevProxy = {
     // host: "http://localhost",
     host: "https://api.memokit.me",

@@ -2,8 +2,8 @@ import App from 'next/app';
 import { Provider } from 'mobx-react';
 import Layout from '../components/Layout';
 import initializeStore from '../store';
-import cookies from 'nookies';
-import { getResultData } from '../utils';
+// import cookies from 'nookies';
+// import { getResultData } from '../utils';
 // import { initialToken } from '../utils/tokenUtil';
 
 class MyApp extends App {
@@ -14,13 +14,13 @@ class MyApp extends App {
     const appProps = await App.getInitialProps(appContext);
 
     //initialToken(appContext.ctx, mobxStore.tokenStore);
-    const refreshTokenObj = await mobxStore.tokenStore.getRefreshToken();
-    const refreshTokenJson = await getResultData(refreshTokenObj);
+    // const refreshTokenObj = await mobxStore.tokenStore.getRefreshToken();
+    // const refreshTokenJson = await getResultData(refreshTokenObj);
 
 
-    setCookie(appContext.ctx);
+    // setCookie(appContext.ctx);
     
-    console.log(refreshTokenJson);
+    // console.log(refreshTokenJson);
     
     
     
@@ -50,16 +50,16 @@ class MyApp extends App {
   }
 }
 
-const setCookie = (ctx) => {
-  cookies.set(ctx, 'x_rf_tk', "999999", {
-      // maxAge: refreshDiffDay * 24 * 60 * 60,
-      path: '/',
-  });
+// const setCookie = (ctx) => {
+//   cookies.set(ctx, 'x_rf_tk', "999999", {
+//       // maxAge: refreshDiffDay * 24 * 60 * 60,
+//       path: '/',
+//   });
 
-  cookies.set(ctx, 'x_ac_tk', "888", {
-    // maxAge: refreshDiffDay * 24 * 60 * 60,
-    path: '/',
-  });
-};
+//   cookies.set(ctx, 'x_ac_tk', "888", {
+//     // maxAge: refreshDiffDay * 24 * 60 * 60,
+//     path: '/',
+//   });
+// };
 
 export default MyApp;
