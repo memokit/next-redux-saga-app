@@ -1,5 +1,5 @@
 
-function Home(props) {
+function HomeMobile(props) {
     const { result } = props;
    
     const list = result.result;
@@ -15,7 +15,7 @@ function Home(props) {
 
     return (
         <>
-            <h1>Hello Next.js</h1>
+            <h1>Hello Home Mobile</h1>
             {listItems}
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -24,4 +24,4 @@ function Home(props) {
         </>
     );
 }
-export default Home;
+export default HomeMobile;

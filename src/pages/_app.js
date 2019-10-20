@@ -19,14 +19,12 @@ class MyApp extends App {
 
 
     // setCookie(appContext.ctx);
-    
-    // console.log(refreshTokenJson);
-    
+  
     
     
     return {
       ...appProps,
-      initialMobxState: mobxStore,
+      initialMobxState: mobxStore
     };
   } 
 

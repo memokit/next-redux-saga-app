@@ -1,6 +1,6 @@
 export const HostConfig = {
     host: "http://localhost",
-    port: 3000
+    port: 5001
 };
 
 export const DevProxy = {

@@ -1,7 +1,7 @@
 import {  observable } from 'mobx';
 import fetch from 'isomorphic-unfetch';
-import api from '../constants/ApiUrl';
-import { DevProxy, ProdProxy } from '../constants/ProxyConfig';
+import { externalApi } from '../constants/ApiUrl';
+// import { DevProxy, ProdProxy } from '../constants/ProxyConfig';
 
 class TokenStore {
     @observable refreshToken = null;
@@ -16,12 +16,10 @@ class TokenStore {
 
     getRefreshToken() {
         try {
-            const isDev = process.env.NODE_ENV !== 'production';
-            const host = isDev?DevProxy.host:ProdProxy.host;
             const body = {
                 "grantType": "GUEST_WEB_SITE"
             };
-            return fetch(host+api.refreshToken, {
+            return fetch(externalApi.refreshToken, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",

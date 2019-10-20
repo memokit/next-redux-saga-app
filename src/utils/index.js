@@ -1,5 +1,6 @@
 
-import { HostConfig} from '../constants/ProxyConfig';
+import { HostConfig } from '../constants/ProxyConfig';
+// import _ from 'lodash';
 
 
 const category = [{
@@ -35,12 +36,15 @@ export const getResultData = async (res) => {
 
   const json = await res.json();
 
-  console.log(res.status);
-  if(res.status === 200){
-    return json.result;
-  } 
-  
-  return {};
+  if (res.status === 200) {
+    return json;
+  }
+
+  return {
+    result: {},
+    status: res.status,
+    message: res.statusText
+  };
 };
 
 export const getInitList = async (apiUrl) => {
@@ -59,8 +63,20 @@ export const getPagePath = (name) => {
 };
 
 export const getHostPath = (url) => {
-  const hostPath = HostConfig.host;
-  let port = HostConfig.port;
+  const isServer = typeof window === 'undefined';
 
-  return `${hostPath}:${port}${url}`;
+  let fullHost;
+  if (!isServer) {    
+    fullHost = `${window.location.protocol}//${window.location.host}`;
+  } else {
+    const hostPath = HostConfig.host;
+    const port = parseInt(process.env.PORT, 10);
+    // const port = HostConfig.port;
+    fullHost = `${hostPath}:${port}`;
+
+  }
+  console.log(`${fullHost}${url}`);
+  
+
+  return `${fullHost}${url}`;
 };

@@ -24,7 +24,7 @@ app.prepare().then(() => {
 
     const ua = req.headers['user-agent']
 
-    if (pathname.startsWith('/static')) {
+    if (pathname.startsWith('/static') || pathname.startsWith('/api')) {
       handle(req, res, parsedUrl)
     } else if (/Mobile/i.test(ua) && !pathname.startsWith('/m')) {
       const mobilePathname = pathname === '/' ? '/m' : `/m${pathname}`
@@ -36,7 +36,7 @@ app.prepare().then(() => {
       app.render(req, res, pathname.slice(2), query)
     } else if (!/Mobile/i.test(ua) && pathname.indexOf('/m') > -1) {
       app.render(req, res, '/', query)
-    }  else {
+    } else {
       handle(req, res, parsedUrl)
     }
   }).listen(port, err => {
