@@ -14,8 +14,8 @@
       "plugins": [
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
         ["@babel/plugin-proposal-class-properties", { "loose": true }],
-        ["import", { "libraryName": "antd" }],
-        ["import", { "libraryName": "antd-mobile" }, "ant-mobile"]
+        ["import", { "libraryName": "antd", "style": true }],
+        ["import", { "libraryName": "antd-mobile", "style": true }, "ant-mobile"]
       ]
     },
     "test": {

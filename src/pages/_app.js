@@ -2,6 +2,7 @@ import App from 'next/app';
 import { Provider } from 'mobx-react';
 import Layout from '../components/Layout';
 import initializeStore from '../store';
+import '../../public/static/less/self-styles.less';
 // import cookies from 'nookies';
 // import { getResultData } from '../utils';
 // import { initialToken } from '../utils/tokenUtil';
@@ -40,7 +41,7 @@ class MyApp extends App {
     const { Component, pageProps, router } = this.props;
     return (
       <Provider store={this.store}>
-        <Layout title={'Test'}>
+        <Layout title={'Memokit'}>
           <Component {...pageProps} router={router} />
         </Layout>
       </Provider>

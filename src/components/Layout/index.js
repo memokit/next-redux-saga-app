@@ -5,8 +5,9 @@ import Link from 'next/link';
 import {
   Layout, Menu, Button, Icon, BackTop
 } from 'antd';
-import ActiveLink from './ActiveLink';
+import ActiveLink from './../ActiveLink';
 import 'isomorphic-fetch';
+
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -21,8 +22,7 @@ const headerStyle = {
   top: '0',
   left: '0',
   width: '100%',
-  zIndex: 10,
-  minWidth: 1140
+  zIndex: 10
 };
 const headerMenuStyle = {
   lineHeight: '64px',
@@ -35,7 +35,7 @@ const contentStyle = {
   minHeight: `calc(100vh - 69px)`
 };
 
-export default ({ children, title = '主页' }) => (
+export default ({ children, title = 'MemoKit' }) => (
   <div>
     <Head>
       <title>{title} - Gank</title>
@@ -44,7 +44,7 @@ export default ({ children, title = '主页' }) => (
         name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"
       />
-      <link href="https://unpkg.com/antd@3.23.6/dist/antd.min.css" rel='stylesheet' />
+      {/* <link href="https://unpkg.com/antd@3.23.6/dist/antd.min.css" rel='stylesheet' /> */}
       <link href="/static/css/nprogress.css" rel="stylesheet" />
       <link href="/static/logo.png" rel="icon" type="image/x-icon" />
       <link href="/static/logo.png" rel="apple-touch-icon" />
