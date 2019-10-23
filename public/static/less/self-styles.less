@@ -1,5 +1,29 @@
+@import "~antd/dist/antd.less";
 @import "./antd-custom.less";
 
 body {
   background-color: #f4f4f5 !important;
+}
+
+li {
+  &.ant-menu-item {
+    &:hover {
+      background-color: #b0cc79 !important;
+    }
+  }
+
+  &.ant-menu-item-selected {
+    background-color: inherit !important;
+
+    &::before {
+      content      : "";
+      transition   : height ease .3s;
+      border-bottom: 4px solid#b0cc79 !important;
+      position     : absolute;
+      bottom       : 0;
+      top          : 0;
+      width        : 100%;
+      right        : 0;
+    }
+  }
 }
