@@ -3,9 +3,30 @@ import { Provider } from 'mobx-react';
 import Layout from '../components/Layout';
 import initializeStore from '../store';
 import '../../public/static/less/self-styles.less';
-// import cookies from 'nookies';
-// import { getResultData } from '../utils';
-// import { initialToken } from '../utils/tokenUtil';
+
+const Index = ({ Component, pageProps, router, store }) => (
+
+
+    <Provider store={store}>
+      <Layout title={'Memokit'}>
+        <Component {...pageProps} router={router} />
+      </Layout>
+    </Provider>
+);
+
+Index.getInitialProps = async (appContext) => {
+  const mobxStore = initializeStore(store);
+  appContext.ctx.store = mobxStore;
+  const appProps = await App.getInitialProps(appContext);
+
+  const isServer = typeof window === 'undefined';
+  store = isServer ? props.initialMobxState : initializeStore(props.initialMobxState);
+
+  return {
+    ...appProps,
+    initialMobxState: mobxStore
+  };
+};
 
 class MyApp extends App {
   static async getInitialProps(appContext) {
@@ -20,14 +41,14 @@ class MyApp extends App {
 
 
     // setCookie(appContext.ctx);
-  
-    
-    
+
+
+
     return {
       ...appProps,
       initialMobxState: mobxStore
     };
-  } 
+  }
 
   constructor(props) {
     super(props);
@@ -35,7 +56,7 @@ class MyApp extends App {
     this.store = isServer ? props.initialMobxState : initializeStore(props.initialMobxState);
   }
 
-  
+
 
   render() {
     const { Component, pageProps, router } = this.props;
