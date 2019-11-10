@@ -7,8 +7,8 @@ export default async (req, res) => {
  
   const cookies = new Cookies(req, res);
  
-  const respond = await getRefreshToken(req);
-  const result = await respond.json();
+  const response = await getRefreshToken(req);
+  const result = await response.json();
   const refreshToken = result.result.refreshToken;
   const accessToken = result.result.accessToken;
   const uid = result.result.uid;

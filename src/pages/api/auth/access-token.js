@@ -5,8 +5,8 @@ import Cookies from 'cookies';
 export default async (req, res) =>  {
 
   const cookies = new Cookies(req, res);
-  const respond = await getAccessToken(req);
-  const result = await respond.json();
+  const response = await getAccessToken(req);
+  const result = await response.json();
   const accessToken = result.result.accessToken;
 
   const decodeAccessToken = jwt.decode(accessToken, { complete: true });

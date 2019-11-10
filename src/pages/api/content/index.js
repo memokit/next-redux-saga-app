@@ -6,8 +6,8 @@ import { externalApi } from '../../../constants/ApiUrl';
  */
 export default async (req, res) => {
 
-  const respond = await getData(req);
-  const result = await respond.json();
+  const response = await getData(req);
+  const result = await response.json();
   res.status(200).json(result);
 };
 

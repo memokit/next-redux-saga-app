@@ -1,14 +1,16 @@
 
 import { Card } from 'antd';
+const { Meta } = Card;
 
 function ImageCard(props) {
-    const { src } = props;
+    const { src, title } = props;
     return (
-        <Card>
-            <img
-                alt="example"
-                src={src}
-            />
+        <Card
+            hoverable
+            // style={{ width: 240 }}
+            cover={<img alt="example" src={src} />}
+        >
+            <Meta title={title} />
         </Card>
     );
 }

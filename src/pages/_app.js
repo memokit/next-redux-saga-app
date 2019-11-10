@@ -3,6 +3,7 @@ import { Provider } from 'mobx-react';
 import Layout from '../components/Layout';
 import initializeStore from '../store';
 import '../../public/static/less/self-styles.less';
+
 // import cookies from 'nookies';
 // import { getResultData } from '../utils';
 // import { initialToken } from '../utils/tokenUtil';

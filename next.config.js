@@ -21,7 +21,10 @@ const themeVariables = lessToJS(
 const isDev = process.env.NODE_ENV !== 'production';
 
 // fix antd bug in dev development
-const devAntd = '@import "~antd/dist/antd.less";\n';
+const devAntd = `@import "~antd/dist/antd.less";
+@import "~slick-carousel/slick/slick.less";
+@import "~slick-carousel/slick/slick-theme.less";\n`
+
 const stylesData = fs.readFileSync(
   path.resolve(__dirname, './public/static/less/_styles.less'),
   'utf-8'
@@ -38,9 +41,9 @@ if (typeof require !== 'undefined') {
   require.extensions['.less'] = (file) => {}
 }
 
-// if (typeof require !== 'undefined') {
-//   require.extensions['.css'] = (file) => {}
-// }
+if (typeof require !== 'undefined') {
+  require.extensions['.css'] = (file) => {}
+}
 
 const srcFolder = [
   path.resolve('src/components'),
@@ -58,6 +61,17 @@ const nextConfig = {
     localIdentName: '[local]___[hash:base64:5]',
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders }) => {
+    config.module.rules.push({
+      test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          limit: 100000,
+          name: '[name].[ext]'
+        }
+      }
+    })
+    
     if (!dev) {
       config.plugins.push(
         ...[
@@ -131,7 +145,7 @@ const nextConfig = {
 }
 
 
-module.exports = withOffline(withImages(withAntd(nextConfig)))
+module.exports = withOffline(withImages(withCss(withAntd(nextConfig))))
 
 
 // const nextConfig = {
