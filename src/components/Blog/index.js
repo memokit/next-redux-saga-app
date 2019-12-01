@@ -1,5 +1,4 @@
 import Head from 'next/head';
-// import { useState, useEffect } from 'react';//useEffect
 import Slider from "react-slick";
 
 function Blog() {
